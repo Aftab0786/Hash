@@ -43,6 +43,26 @@ namespace HashTable
             LinkedList.AddLast(map);
 
         }
+        public void Remove(K key)
+        {
+            int position = GetArrayPosition(key);
+            LinkedList<KeyValue<K, V>> LinkedList = GetLinkedList(position);
+            bool mapfound = false;
+            KeyValue<K, V> foundmap = default(KeyValue<K, V>);
+            foreach (KeyValue<K, V> map in LinkedList)
+            {
+                if (map.key.Equals(key))
+                {
+                    mapfound = true;
+                    foundmap = map;
+
+                }
+            }
+            if (mapfound)
+            {
+                LinkedList.Remove(foundmap);
+            }
+        }
         protected LinkedList<KeyValue<K, V>> GetLinkedList(int position)
         {
             LinkedList<KeyValue<K, V>> LinkedList = map[position];
