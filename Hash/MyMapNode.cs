@@ -43,7 +43,18 @@ namespace HashTable
             LinkedList.AddLast(map);
 
         }
-       
+        protected LinkedList<KeyValue<K, V>> GetLinkedList(int position)
+        {
+            LinkedList<KeyValue<K, V>> LinkedList = map[position];
+            if (LinkedList == null)
+            {
+                LinkedList = new LinkedList<KeyValue<K, V>>();
+                map[position] = LinkedList;
+
+            }
+            return LinkedList;
+        }
+
         public struct KeyValue<K, V>
         {
             public K key { get; set; }
